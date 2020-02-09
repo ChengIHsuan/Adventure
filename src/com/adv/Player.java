@@ -1,21 +1,19 @@
 package com.adv;
 
 public class Player {
-	int hp = 100;
-	int pos = 0;
-	int coin = 5;
-	int count = 0;
+	/* 初始值設定 */
+	int hp = 100;    //生命值
+	int pos = 0;     //起點位置
+	int coin = 5;    //金幣
+	int count = 0;   //移動步數
 	Item i = new Item();
 
-	public void again() {
-		pos = 0;
-		count = 0;
-	}
-
+	// 遊戲開始須花費5枚金幣
 	public void cost() {
 		coin = coin - 5;
 	}
 
+	// 移動之後顯示玩家相關資訊
 	public void move() {
 		System.out.println("位置:" + pos + " /hp值:" + hp + " /金幣:" + coin);
 	}
@@ -59,10 +57,18 @@ public class Player {
 	}
 
 	public void end() {
-		System.out.println("恭喜你，抵達終點!!");
+		coin = coin + 2;
+		System.out.println("恭喜你，抵達終點!!獲得獎勵2枚金幣");
 		System.out.println("共走了" + count + "步 /hp值:" + hp + " /金幣:" + coin);
 	}
 
+	// 再玩一次，起點位置、移動步數歸0
+	public void again() {
+		pos = 0;
+		count = 0;
+	}
+
+	// 若有移動，判斷是否觸發特殊道具
 	public void result() {
 		if (i.solution(pos)) {
 			solution();
